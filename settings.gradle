@@ -1,3 +1,4 @@
 rootProject.name = 'spring-services'
 
 includeBuild 'eureka-server'
+includeBuild 'eureka-client'
