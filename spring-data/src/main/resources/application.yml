@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: spring-data
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/spring_test
+    username: myuser
+    password: mypassword
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+
+server:
+  # To set random port
+  port: 0
+
+eureka:
+  client:
+    # URL for services registration
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  # To generate unique ID for each instance of client
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
+logging:
+  # Set format of log messages
+  pattern:
+    console: %C{1.} [%-5level] %d{HH:mm:ss} - %msg%n

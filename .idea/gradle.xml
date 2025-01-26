@@ -16,6 +16,11 @@
                   <project path="$PROJECT_DIR$/eureka-server" />
                 </projects>
               </build>
+              <build path="$PROJECT_DIR$/spring-gateway" name="spring-gateway">
+                <projects>
+                  <project path="$PROJECT_DIR$/spring-gateway" />
+                </projects>
+              </build>
             </builds>
           </compositeBuild>
         </compositeConfiguration>
@@ -26,6 +31,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/eureka-client" />
             <option value="$PROJECT_DIR$/eureka-server" />
+            <option value="$PROJECT_DIR$/spring-gateway" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -42,6 +48,14 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/eureka-server" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/spring-gateway" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/spring-gateway" />
           </set>
         </option>
       </GradleProjectSettings>
