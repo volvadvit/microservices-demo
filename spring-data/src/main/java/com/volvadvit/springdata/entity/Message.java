@@ -24,6 +24,14 @@ public class Message {
     @JoinColumn(name = "sender_id", referencedColumnName = "id")
     private User sender;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "conversation_id", referencedColumnName = "id")
+    private Conversation conversation;
+
+    public Long getId() {
+        return id;
+    }
+
     @JsonIgnore
     public User getSender() {
         return sender;
@@ -39,5 +47,13 @@ public class Message {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public Conversation getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
     }
 }

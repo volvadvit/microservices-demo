@@ -1,14 +1,13 @@
-create table hibernate_sequence (next_val bigint);
+create table if not exists hibernate_sequence (next_val bigint);
 insert into hibernate_sequence values ( 2 );
 
-create table conversation (
-                              id bigint not null,
+create table if not exists conversation (
+                              id bigint primary key ,
                               created_at timestamp,
-                              name varchar(255),
-                              primary key (id)
+                              name varchar(255) not null check (length(trim(name)) >= 2)
 );
 
-create table message (
+create table if not exists message (
                          id bigint not null,
                          body varchar(2048),
                          created_at timestamp,
@@ -17,13 +16,13 @@ create table message (
                          primary key (id)
 );
 
-create table user_details (
+create table if not exists user_details (
                               id bigint not null,
                               name varchar(255),
                               primary key (id)
 );
 
-create table user_conversations (
+create table if not exists user_conversations (
                                     user_id bigint not null,
                                     conversation_id bigint not null
 );

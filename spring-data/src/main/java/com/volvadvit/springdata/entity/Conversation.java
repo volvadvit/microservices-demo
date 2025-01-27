@@ -32,6 +32,10 @@ public class Conversation {
 
     private String name;
 
+    public Long getId() {
+        return id;
+    }
+
     public Set<User> getUsers() {
         return users;
     }
