@@ -1,26 +1,26 @@
-package com.volvadvit.springdata.controller.dto;
+package com.volvadvit.springdata.controller.dto.response;
 
 import java.util.Set;
 
-public class UserDTO {
+public class UserResponseDTO {
 
-    public UserDTO(long id, String name, Set<Integer> messagesIDs, Set<Integer> conversationsIDs) {
+    public UserResponseDTO(int id, String name, Set<Long> messagesIDs, Set<Long> conversationsIDs) {
         this.id = id;
         this.name = name;
         this.messagesIDs = messagesIDs;
         this.conversationsIDs = conversationsIDs;
     }
 
-    private long id;
+    private int id;
     private String name;
-    private Set<Integer> messagesIDs;
-    private Set<Integer> conversationsIDs;
+    private Set<Long> messagesIDs;
+    private Set<Long> conversationsIDs;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -32,19 +32,19 @@ public class UserDTO {
         this.name = name;
     }
 
-    public Set<Integer> getMessagesIDs() {
+    public Set<Long> getMessagesIDs() {
         return messagesIDs;
     }
 
-    public void setMessagesIDs(Set<Integer> messagesIDs) {
+    public void setMessagesIDs(Set<Long> messagesIDs) {
         this.messagesIDs = messagesIDs;
     }
 
-    public Set<Integer> getConversationsIDs() {
+    public Set<Long> getConversationsIDs() {
         return conversationsIDs;
     }
 
-    public void setConversationsIDs(Set<Integer> conversationsIDs) {
+    public void setConversationsIDs(Set<Long> conversationsIDs) {
         this.conversationsIDs = conversationsIDs;
     }
 }

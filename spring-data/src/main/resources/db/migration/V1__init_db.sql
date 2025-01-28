@@ -1,14 +1,14 @@
-create table if not exists hibernate_sequence (next_val bigint);
-insert into hibernate_sequence values ( 2 );
+-- create table if not exists hibernate_sequence (next_val bigint);
+-- insert into hibernate_sequence values ( 2 );
 
 create table if not exists conversation (
-                              id bigint primary key ,
+                              id serial primary key,
                               created_at timestamp,
                               name varchar(255) not null check (length(trim(name)) >= 2)
 );
 
 create table if not exists message (
-                         id bigint not null,
+                         id serial not null,
                          body varchar(2048),
                          created_at timestamp,
                          conversation_id bigint not null,
@@ -17,9 +17,8 @@ create table if not exists message (
 );
 
 create table if not exists user_details (
-                              id bigint not null,
-                              name varchar(255),
-                              primary key (id)
+                              id serial primary key,
+                              name varchar(255)
 );
 
 create table if not exists user_conversations (
@@ -32,3 +31,7 @@ alter table user_conversations add constraint convers_id foreign key (conversati
 alter table user_conversations add constraint convers_user foreign key (user_id) references user_details (id);
 alter table message add constraint message_convers_fk foreign key (conversation_id) references conversation (id);
 alter table message add constraint message_send_fk foreign key (sender_id) references user_details (id);
+
+alter sequence user_details_id_seq restart with 4;
+alter sequence message_id_seq restart with 5;
+alter sequence conversation_id_seq restart with 3;

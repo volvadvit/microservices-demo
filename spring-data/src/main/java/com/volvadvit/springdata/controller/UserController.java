@@ -20,8 +20,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("{id}")
-    public ResponseEntity<UserDTO> getUserById(final @PathVariable Long id) {
-        final User user = userService.getUser(id);
+    public ResponseEntity<UserDTO> getUserById(final @PathVariable Integer id) {
+        final User user = userService.getUserById(id);
         return ResponseEntity.ok(
                 new UserDTO(user.getId(), user.getName(),
                         user.getSentMessages().stream().map(msg -> msg.getId()).collect(Collectors.toSet()),

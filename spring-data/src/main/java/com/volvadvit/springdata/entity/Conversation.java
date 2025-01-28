@@ -19,7 +19,7 @@ public class Conversation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @ManyToMany(mappedBy = "conversations", targetEntity = User.class)
     private Set<User> users;
@@ -32,7 +32,7 @@ public class Conversation {
 
     private String name;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

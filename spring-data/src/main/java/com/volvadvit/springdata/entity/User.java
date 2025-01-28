@@ -11,7 +11,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
 
@@ -25,7 +25,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "conversation_id"))
     private Set<Conversation> conversations;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

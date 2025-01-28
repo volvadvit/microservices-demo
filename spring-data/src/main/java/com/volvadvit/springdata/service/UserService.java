@@ -4,5 +4,5 @@ import com.volvadvit.springdata.entity.User;
 
 public interface UserService {
 
-    User getUser(Long id);
+    User getUserById(Integer id);
 }
