@@ -4,8 +4,11 @@ import com.volvadvit.springdata.controller.dto.request.MessageRequestDTO;
 import com.volvadvit.springdata.controller.dto.response.MessageResponseDTO;
 import com.volvadvit.springdata.entity.Message;
 import com.volvadvit.springdata.service.MessageService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,9 +28,18 @@ public class MessageController {
     private MessageService messageService;
 
     @PostMapping
-    public ResponseEntity<MessageResponseDTO> saveNewMessage(@RequestBody final MessageRequestDTO requestDTO) {
-        final Message newMessage = messageService.saveNewMessage(requestDTO.getMessage(), requestDTO.getConversationId(), requestDTO.getSenderId());
-        return ResponseEntity.ok(convertMessageToDTO(newMessage));
+    public ResponseEntity<MessageResponseDTO> saveNewMessage(@Valid @RequestBody final MessageRequestDTO requestDTO,
+                                                             final BindingResult bindingResult) throws BindException {
+        if (bindingResult.hasErrors()) {
+            if (bindingResult instanceof BindException exception) {
+                throw exception;
+            } else {
+                throw new BindException(bindingResult);
+            }
+        } else {
+            final Message newMessage = messageService.saveNewMessage(requestDTO.getMessage(), requestDTO.getConversationId(), requestDTO.getSenderId());
+            return ResponseEntity.ok(convertMessageToDTO(newMessage));
+        }
     }
 
     @GetMapping

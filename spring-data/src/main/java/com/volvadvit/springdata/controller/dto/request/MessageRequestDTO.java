@@ -1,5 +1,8 @@
 package com.volvadvit.springdata.controller.dto.request;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class MessageRequestDTO {
 
     public MessageRequestDTO(String message, int senderId, int conversationId) {
@@ -8,9 +11,13 @@ public class MessageRequestDTO {
         this.conversationId = conversationId;
     }
 
+    @NotNull
+    @Size(min = 1, max = 2048)
     private String message;
-    private int senderId;
-    private int conversationId;
+    @NotNull
+    private Integer senderId;
+    @NotNull
+    private Integer conversationId;
 
     public String getMessage() {
         return message;
@@ -20,19 +27,19 @@ public class MessageRequestDTO {
         this.message = message;
     }
 
-    public int getSenderId() {
+    public Integer getSenderId() {
         return senderId;
     }
 
-    public void setSenderId(int senderId) {
+    public void setSenderId(Integer senderId) {
         this.senderId = senderId;
     }
 
-    public int getConversationId() {
+    public Integer getConversationId() {
         return conversationId;
     }
 
-    public void setConversationId(int conversationId) {
+    public void setConversationId(Integer conversationId) {
         this.conversationId = conversationId;
     }
 }
