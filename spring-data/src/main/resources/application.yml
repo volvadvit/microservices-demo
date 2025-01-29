@@ -10,9 +10,18 @@ spring:
     hibernate:
       ddl-auto: validate
     generate-ddl: false
+    show-sql: true
   flyway:
     schemas:
       - public
+  kafka:
+    bootstrap-servers: localhost:29092
+    listener:
+      # Получение каждой записи должно быть подтверждено
+      ack-mode: record
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ParseStringDeserializer
 
 server:
   # To set random port

@@ -1,10 +1,10 @@
-package com.volvadvit.springdata.controller.dto.response;
+package com.volvadvit.springdata.dto.response;
 
 import java.util.Set;
 
 public class UserResponseDTO {
 
-    public UserResponseDTO(int id, String name, Set<Long> messagesIDs, Set<Long> conversationsIDs) {
+    public UserResponseDTO(int id, String name, Set<Integer> messagesIDs, Set<Integer> conversationsIDs) {
         this.id = id;
         this.name = name;
         this.messagesIDs = messagesIDs;
@@ -13,8 +13,8 @@ public class UserResponseDTO {
 
     private int id;
     private String name;
-    private Set<Long> messagesIDs;
-    private Set<Long> conversationsIDs;
+    private Set<Integer> messagesIDs;
+    private Set<Integer> conversationsIDs;
 
     public int getId() {
         return id;
@@ -32,19 +32,19 @@ public class UserResponseDTO {
         this.name = name;
     }
 
-    public Set<Long> getMessagesIDs() {
+    public Set<Integer> getMessagesIDs() {
         return messagesIDs;
     }
 
-    public void setMessagesIDs(Set<Long> messagesIDs) {
+    public void setMessagesIDs(Set<Integer> messagesIDs) {
         this.messagesIDs = messagesIDs;
     }
 
-    public Set<Long> getConversationsIDs() {
+    public Set<Integer> getConversationsIDs() {
         return conversationsIDs;
     }
 
-    public void setConversationsIDs(Set<Long> conversationsIDs) {
+    public void setConversationsIDs(Set<Integer> conversationsIDs) {
         this.conversationsIDs = conversationsIDs;
     }
 }

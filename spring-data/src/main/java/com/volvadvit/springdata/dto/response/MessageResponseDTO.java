@@ -1,4 +1,4 @@
-package com.volvadvit.springdata.controller.dto.response;
+package com.volvadvit.springdata.dto.response;
 
 public class MessageResponseDTO {
 

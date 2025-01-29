@@ -1,13 +1,13 @@
-package com.volvadvit.eurekaclient;
+package com.volvadvit.kafkaproducer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EurekaClientApplication {
+public class KafkaProducerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EurekaClientApplication.class, args);
+        SpringApplication.run(KafkaProducerApplication.class, args);
     }
 
 }

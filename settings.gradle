@@ -1,6 +1,6 @@
 rootProject.name = 'spring-services'
 
 includeBuild 'eureka-server'
-includeBuild 'eureka-client'
+includeBuild 'kafka-producer'
 includeBuild 'spring-gateway'
 includeBuild 'spring-data'

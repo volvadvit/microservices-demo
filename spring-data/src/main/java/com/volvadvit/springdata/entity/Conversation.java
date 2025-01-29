@@ -7,6 +7,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Timestamp;
@@ -15,6 +19,10 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Conversation {
 
     @Id
@@ -27,40 +35,8 @@ public class Conversation {
     @DateTimeFormat
     Timestamp createdAt = Timestamp.from(Instant.now());
 
-    @OneToMany(mappedBy = "conversation", targetEntity = Message.class, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "conversation", targetEntity = Message.class, cascade = CascadeType.ALL, orphanRemoval = true)
     List<Message> messages;
 
     private String name;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public List<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

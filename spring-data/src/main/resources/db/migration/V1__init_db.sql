@@ -1,6 +1,3 @@
--- create table if not exists hibernate_sequence (next_val bigint);
--- insert into hibernate_sequence values ( 2 );
-
 create table if not exists conversation (
                               id serial primary key,
                               created_at timestamp,
@@ -22,8 +19,8 @@ create table if not exists user_details (
 );
 
 create table if not exists user_conversations (
-                                    user_id bigint not null,
-                                    conversation_id bigint not null
+                                    user_id serial not null,
+                                    conversation_id serial not null
 );
 
 alter table user_details add constraint user_details_username_unique unique (name);

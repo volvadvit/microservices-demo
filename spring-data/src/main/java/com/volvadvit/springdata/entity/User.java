@@ -1,12 +1,20 @@
 package com.volvadvit.springdata.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "user_details")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -21,35 +29,8 @@ public class User {
     @ManyToMany
     @JoinTable(
             name = "user_conversations",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "conversation_id"))
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "conversation_id") })
     private Set<Conversation> conversations;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public List<Message> getSentMessages() {
-        return sentMessages;
-    }
-
-    public void setSentMessages(List<Message> sentMessages) {
-        this.sentMessages = sentMessages;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<Conversation> getConversations() {
-        return conversations;
-    }
-
-    public void setConversations(Set<Conversation> conversations) {
-        this.conversations = conversations;
-    }
 }
+

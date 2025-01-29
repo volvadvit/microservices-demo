@@ -3,22 +3,19 @@ package com.volvadvit.springdata.service.impl;
 import com.volvadvit.springdata.entity.Conversation;
 import com.volvadvit.springdata.repository.ConversationRepository;
 import com.volvadvit.springdata.service.ConversationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class ConversationServiceImpl implements ConversationService {
 
     private final ConversationRepository conversationRepository;
 
-    public ConversationServiceImpl(ConversationRepository conversationRepository) {
-        this.conversationRepository = conversationRepository;
-    }
-
     @Override
     public Conversation getConversationById(final Integer id) {
-        return conversationRepository.findById(id).orElseThrow(() ->
-                new RuntimeException(String.format("Conversation %s Not Found!", id)));
+        return conversationRepository.findById(id).orElse(null);
     }
 
     @Override

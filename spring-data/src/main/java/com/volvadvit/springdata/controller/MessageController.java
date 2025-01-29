@@ -1,11 +1,11 @@
 package com.volvadvit.springdata.controller;
 
-import com.volvadvit.springdata.controller.dto.request.MessageRequestDTO;
-import com.volvadvit.springdata.controller.dto.response.MessageResponseDTO;
+import com.volvadvit.springdata.dto.request.MessageRequestDTO;
+import com.volvadvit.springdata.dto.response.MessageResponseDTO;
 import com.volvadvit.springdata.entity.Message;
 import com.volvadvit.springdata.service.MessageService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -22,10 +22,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/messages")
+@RequiredArgsConstructor
 public class MessageController {
 
-    @Autowired
-    private MessageService messageService;
+    private final MessageService messageService;
 
     @PostMapping
     public ResponseEntity<MessageResponseDTO> saveNewMessage(@Valid @RequestBody final MessageRequestDTO requestDTO,
@@ -37,8 +37,8 @@ public class MessageController {
                 throw new BindException(bindingResult);
             }
         } else {
-            final Message newMessage = messageService.saveNewMessage(requestDTO.getMessage(), requestDTO.getConversationId(), requestDTO.getSenderId());
-            return ResponseEntity.ok(convertMessageToDTO(newMessage));
+            final Message newMessage = messageService.saveNewMessage(requestDTO);
+            return ResponseEntity.ok(toMessageResponseDTO(newMessage));
         }
     }
 
@@ -47,11 +47,11 @@ public class MessageController {
         return ResponseEntity.ok(
                 Optional.ofNullable(messageService.getAllCreatedAfter(date)).stream()
                         .flatMap(Collection::stream)
-                        .map(this::convertMessageToDTO)
+                        .map(this::toMessageResponseDTO)
                         .toList());
     }
 
-    private MessageResponseDTO convertMessageToDTO(final Message message) {
+    private MessageResponseDTO toMessageResponseDTO(final Message message) {
         return new MessageResponseDTO(
                 message.getBody(),
                 message.getId(),
