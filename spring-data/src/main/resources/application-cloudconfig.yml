@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: spring-data
+  config:
+    import: 'optional:configserver:'
+  cloud:
+    config:
+      uri: http://usr_config:pwd_config@localhost:8888
+
+server:
+  # To set random port
+  port: 0

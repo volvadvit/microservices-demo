@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: spring-config
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:///C:/Users/Vadim_Volkov2/Desktop/Learning/spring-services/config/cloud/{application}/{profile}
+  profiles:
+    active: native
+  security:
+    user:
+      name: user_config
+      password: pwd_config
+      roles:
+        - CONFIG
+
+server:
+  port: 8888
