@@ -1,5 +1,7 @@
 package com.volvadvit.springdata.kafka;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.volvadvit.springdata.dto.request.MessageRequestDTO;
 import com.volvadvit.springdata.entity.Message;
 import com.volvadvit.springdata.service.MessageService;
@@ -15,12 +17,18 @@ import org.springframework.stereotype.Service;
 public class KafkaConsumerService {
 
     private final MessageService messageService;
+    private final ObjectMapper objectMapper;
 
     @KafkaListener(topics = "messages", groupId="messages_consumer")
-    public void listen(final ConsumerRecord<String, MessageRequestDTO> newRecord) {
-        log.info("Message from Kafka: key=[{}], value=[{}]", newRecord.key(), newRecord.value().toString());
-        //TODO add deserializer
-        final Message savedMessage = messageService.saveNewMessage(newRecord.value());
-        log.info("New message was created = [{}]", savedMessage.getId());
+    public void listen(final ConsumerRecord<String, String> newRecord) {
+        try {
+            log.info("Message from Kafka: key=[{}], value=[{}]", newRecord.key(), newRecord.value());
+            final MessageRequestDTO dto = objectMapper.readValue(newRecord.value(), MessageRequestDTO.class);
+            //TODO add deserializer
+            final Message savedMessage = messageService.saveNewMessage(dto);
+            log.info("New message was created = [{}]", savedMessage.getId());
+        } catch (JsonProcessingException e) {
+            log.error(e.getMessage());
+        }
     }
 }
