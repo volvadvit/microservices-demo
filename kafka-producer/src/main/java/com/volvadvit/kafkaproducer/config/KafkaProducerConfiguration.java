@@ -1,16 +1,24 @@
-package com.volvadvit.kafkaproducer.kafka;
+package com.volvadvit.kafkaproducer.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class KafkaConfiguration {
+public class KafkaProducerConfiguration {
 
     @Bean
-    public NewTopic newTopic() {
+    public NewTopic messageTopic() {
         return new NewTopic(
                 "messages",
+                2,
+                (short) 1);
+    }
+
+    @Bean
+    public NewTopic dltTopic() {
+        return new NewTopic(
+                "messages.dlt",
                 2,
                 (short) 1);
     }

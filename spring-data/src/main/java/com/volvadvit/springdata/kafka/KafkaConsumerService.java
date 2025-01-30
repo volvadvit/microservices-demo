@@ -19,16 +19,17 @@ public class KafkaConsumerService {
     private final MessageService messageService;
     private final ObjectMapper objectMapper;
 
-    @KafkaListener(topics = "messages", groupId="messages_consumer")
-    public void listen(final ConsumerRecord<String, String> newRecord) {
-        try {
-            log.info("Message from Kafka: key=[{}], value=[{}]", newRecord.key(), newRecord.value());
-            final MessageRequestDTO dto = objectMapper.readValue(newRecord.value(), MessageRequestDTO.class);
-            //TODO add deserializer
-            final Message savedMessage = messageService.saveNewMessage(dto);
-            log.info("New message was created = [{}]", savedMessage.getId());
-        } catch (JsonProcessingException e) {
-            log.error(e.getMessage());
-        }
+    @KafkaListener(
+            topics = "messages",
+            groupId="messages_consumer",
+            // Use custom factory to enable concurrency
+            containerFactory = "kafkaListenerContainerFactory"
+    )
+    public void listen(final ConsumerRecord<String, String> newRecord) throws JsonProcessingException {
+        log.info("Message from Kafka: key=[{}], value=[{}], Thread=[{}}]", newRecord.key(), newRecord.value(), Thread.currentThread().getName());
+        final MessageRequestDTO dto = objectMapper.readValue(newRecord.value(), MessageRequestDTO.class);
+        //TODO add custom deserializer?
+        final Message savedMessage = messageService.saveNewMessage(dto);
+        log.info("New message was created = [{}]", savedMessage.getId());
     }
 }

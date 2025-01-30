@@ -10,7 +10,7 @@ spring:
     hibernate:
       ddl-auto: validate
     generate-ddl: false
-    show-sql: true
+#    show-sql: true
   flyway:
     schemas:
       - public
@@ -19,9 +19,9 @@ spring:
     listener:
       # Commit the offset after each record is processed by the listener.
       ack-mode: record
-    consumer:
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 server:
   # To set random port

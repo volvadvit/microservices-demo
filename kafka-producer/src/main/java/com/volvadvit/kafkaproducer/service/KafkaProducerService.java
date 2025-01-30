@@ -1,4 +1,4 @@
-package com.volvadvit.kafkaproducer.kafka;
+package com.volvadvit.kafkaproducer.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
