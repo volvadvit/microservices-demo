@@ -5,6 +5,7 @@ spring:
     config:
       server:
         native:
+#         To get configuration: http://localhost:8888/spring-data-cloudconfig:yml
           search-locations: file:///C:/Users/Vadim_Volkov2/Desktop/Learning/spring-services/config/cloud/{application}/{profile}
   profiles:
     active: native
