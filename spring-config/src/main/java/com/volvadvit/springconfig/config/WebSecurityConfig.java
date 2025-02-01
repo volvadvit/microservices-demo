@@ -14,7 +14,8 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
         return http
-                .authorizeHttpRequests(customizer -> customizer.anyRequest().authenticated())
+                .authorizeHttpRequests(customizer ->
+                        customizer.requestMatchers("/**").hasRole("CONFIG"))
                 .csrf(CsrfConfigurer::disable)
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .httpBasic(Customizer.withDefaults())

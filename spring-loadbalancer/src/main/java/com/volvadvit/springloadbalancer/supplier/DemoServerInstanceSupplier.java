@@ -8,13 +8,7 @@ import reactor.core.publisher.Flux;
 import java.util.Arrays;
 import java.util.List;
 
-public class DemoServerInstanceSupplier implements ServiceInstanceListSupplier {
-
-    private final String serviceId;
-
-    public DemoServerInstanceSupplier(final String serviceId) {
-        this.serviceId = serviceId;
-    }
+record DemoServerInstanceSupplier(String serviceId) implements ServiceInstanceListSupplier {
 
     @Override
     public String getServiceId() {

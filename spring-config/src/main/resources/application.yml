@@ -12,7 +12,7 @@ spring:
   security:
     user:
       name: user_config
-      password: pwd_config
+      password: '{noop}pwd_config'
       roles:
         - CONFIG
 

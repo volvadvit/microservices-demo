@@ -22,10 +22,16 @@ ext {
 }
 
 dependencies {
+    // Web
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    // Eureka
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    // Kafka
     implementation 'org.springframework.kafka:spring-kafka:3.3.0'
-
+    // OAuth
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // Lombok
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
 }

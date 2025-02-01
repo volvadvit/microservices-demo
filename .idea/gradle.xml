@@ -17,6 +17,11 @@
                   <project path="$PROJECT_DIR$/kafka-producer" />
                 </projects>
               </build>
+              <build path="$PROJECT_DIR$/spring-config" name="spring-config">
+                <projects>
+                  <project path="$PROJECT_DIR$/spring-config" />
+                </projects>
+              </build>
               <build path="$PROJECT_DIR$/spring-data" name="spring-data">
                 <projects>
                   <project path="$PROJECT_DIR$/spring-data" />
@@ -25,6 +30,11 @@
               <build path="$PROJECT_DIR$/spring-gateway" name="spring-gateway">
                 <projects>
                   <project path="$PROJECT_DIR$/spring-gateway" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/spring-loadbalancer" name="spring-loadbalancer">
+                <projects>
+                  <project path="$PROJECT_DIR$/spring-loadbalancer" />
                 </projects>
               </build>
             </builds>
@@ -37,8 +47,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/eureka-server" />
             <option value="$PROJECT_DIR$/kafka-producer" />
+            <option value="$PROJECT_DIR$/spring-config" />
             <option value="$PROJECT_DIR$/spring-data" />
             <option value="$PROJECT_DIR$/spring-gateway" />
+            <option value="$PROJECT_DIR$/spring-loadbalancer" />
           </set>
         </option>
       </GradleProjectSettings>
