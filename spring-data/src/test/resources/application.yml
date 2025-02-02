@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:16:///spring_test?TC_DAEMON=true
+    username: myuser
+    password: mypassword
+
+  cloud:
+    config:
+      enabled: false
