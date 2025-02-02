@@ -23,7 +23,7 @@ class KafkaControllerTest {
 
     @Test
     @WithMockUser(username = "test user", authorities = {"SCOPE_PUBLIC_API"})
-    void sendMessageToKafka_withValidMessage_WithEmbeddedKafka_ExpectedSuccess() throws Exception {
+    void sendMessageToKafka_withValidMessage_WithAuthorizedUser_Success() throws Exception {
         // Given
         var requestBuilder = MockMvcRequestBuilders.post("/kafka/send").contentType(APPLICATION_JSON)
                 .content("""
@@ -39,6 +39,27 @@ class KafkaControllerTest {
                 .andDo(print())
                 .andExpectAll(
                         status().isOk()
+                );
+    }
+
+    @Test
+    @WithMockUser(username = "test user")
+    void sendMessageToKafka_withValidMessage_WithNotAuthorizedUser_Forbidden() throws Exception {
+        // Given
+        var requestBuilder = MockMvcRequestBuilders.post("/kafka/send").contentType(APPLICATION_JSON)
+                .content("""
+                        {
+                            "message": "test-test",
+                            "senderId": 1,
+                            "conversationId": 2
+                        }
+                        """);
+        // When
+        this.mockMvc.perform(requestBuilder)
+                // Then
+                .andDo(print())
+                .andExpectAll(
+                        status().isForbidden()
                 );
     }
 }
