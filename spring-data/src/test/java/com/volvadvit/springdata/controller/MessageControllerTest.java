@@ -1,6 +1,6 @@
 package com.volvadvit.springdata.controller;
 
-import com.volvadvit.springdata.dto.request.MessageRequestDTO;
+import com.volvadvit.springdata.dto.request.MessageCreateRequestDTO;
 import com.volvadvit.springdata.dto.response.MessageResponseDTO;
 import com.volvadvit.springdata.entity.Conversation;
 import com.volvadvit.springdata.entity.Message;
@@ -51,7 +51,7 @@ class MessageControllerTest {
         final String messageBody = "test message";
         final int messageId = 1;
         final Message newMessage = createNewMessage(messageId, messageBody, 1, 1);
-        final MessageRequestDTO requestDTO = new MessageRequestDTO(messageBody, 1, 1);
+        final MessageCreateRequestDTO requestDTO = new MessageCreateRequestDTO(messageBody, 1, 1);
 
         when(messageService.saveNewMessage(any())).thenReturn(newMessage);
         // When
@@ -68,7 +68,7 @@ class MessageControllerTest {
     void saveNewMessage_RequestIsNotValid_BindingExceptionExpected() throws BindException {
         // Given
         final String messageBody = "";
-        final MessageRequestDTO requestDTO = new MessageRequestDTO(messageBody, 1, 1);
+        final MessageCreateRequestDTO requestDTO = new MessageCreateRequestDTO(messageBody, 1, 1);
         when(bindingResult.hasErrors()).thenReturn(true);
         // When
         try {

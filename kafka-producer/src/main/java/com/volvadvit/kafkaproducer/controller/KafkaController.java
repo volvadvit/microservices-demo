@@ -1,6 +1,6 @@
 package com.volvadvit.kafkaproducer.controller;
 
-import com.volvadvit.kafkaproducer.kafka.service.KafkaProducerService;
+import com.volvadvit.kafkaproducer.kafka.producer.KafkaProducerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

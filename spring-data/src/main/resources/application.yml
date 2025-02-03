@@ -16,12 +16,22 @@ spring:
       - public
   kafka:
     bootstrap-servers: localhost:29092
-    listener:
-      # Commit the offset after each record is processed by the listener.
-      ack-mode: record
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    # Commit the offset after each record is processed by the listener.
+#    listener:
+#      ack-mode: record
+    # For exactly-once processing
+#    consumer:
+#      enable-auto-commit: false
+
+logging:
+  level:
+    org:
+      springframework:
+        transaction:
+          interceptor: TRACE
 
 server:
   # To set random port

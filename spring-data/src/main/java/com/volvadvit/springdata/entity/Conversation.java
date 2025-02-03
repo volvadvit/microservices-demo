@@ -1,6 +1,7 @@
 package com.volvadvit.springdata.entity;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,10 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Timestamp;
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -32,11 +31,11 @@ public class Conversation {
     @ManyToMany(mappedBy = "conversations", targetEntity = User.class)
     private Set<User> users;
 
-    @DateTimeFormat
-    Timestamp createdAt = Timestamp.from(Instant.now());
+    @Column
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @OneToMany(mappedBy = "conversation", targetEntity = Message.class, cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Message> messages;
+    private List<Message> messages;
 
     private String name;
 }

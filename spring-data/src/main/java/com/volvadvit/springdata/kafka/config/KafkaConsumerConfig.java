@@ -1,4 +1,4 @@
-package com.volvadvit.springdata.config;
+package com.volvadvit.springdata.kafka.config;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -14,13 +14,16 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
+import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
 import org.springframework.kafka.listener.DefaultErrorHandler;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
+@EnableTransactionManagement
 @RequiredArgsConstructor
 public class KafkaConsumerConfig {
 
@@ -37,11 +40,16 @@ public class KafkaConsumerConfig {
     private String bootstrapServers;
 
     public Map<String, Object> consumerConfig() {
-        Map<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        return props;
+        final Map<String, Object> config = new HashMap<>();
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "messages_consumer");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, "30000");
+        // copy of "spring.kafka.consumer.enable-auto-commit"
+        config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
+        config.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_committed");
+        return config;
     }
 
     @Bean
@@ -54,9 +62,12 @@ public class KafkaConsumerConfig {
             final ConsumerFactory<String, String> consumerFactory,
             final DefaultErrorHandler errorHandler)
     {
-        final ConcurrentKafkaListenerContainerFactory<String, String> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
+        final ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
+
+        factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
+        // Copy of "spring.kafka.listener.ack-mode". Commit the offset after each record is processed by the listener.
+//        factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.RECORD);
         factory.setCommonErrorHandler(errorHandler);
         // 2 threads = 2 partitions
         factory.setConcurrency(2);
