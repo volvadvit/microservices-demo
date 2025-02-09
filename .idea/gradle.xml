@@ -12,6 +12,11 @@
                   <project path="$PROJECT_DIR$/eureka-server" />
                 </projects>
               </build>
+              <build path="$PROJECT_DIR$/grpc-server" name="grpc-server">
+                <projects>
+                  <project path="$PROJECT_DIR$/grpc-server" />
+                </projects>
+              </build>
               <build path="$PROJECT_DIR$/kafka-producer" name="kafka-producer">
                 <projects>
                   <project path="$PROJECT_DIR$/kafka-producer" />
@@ -46,6 +51,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/eureka-server" />
+            <option value="$PROJECT_DIR$/grpc-server" />
             <option value="$PROJECT_DIR$/kafka-producer" />
             <option value="$PROJECT_DIR$/spring-config" />
             <option value="$PROJECT_DIR$/spring-data" />
@@ -59,6 +65,22 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/eureka-server" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/grpc-client" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/grpc-client" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/grpc-server" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/grpc-server" />
           </set>
         </option>
       </GradleProjectSettings>

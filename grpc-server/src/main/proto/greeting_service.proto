@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package com.volvadvit.grpc;
+
+option java_package = "com.volvadvit.gprc";
+option java_multiple_files = true;
+
+message HelloRequest {
+  string name = 1;
+  repeated string hobbies = 2;
+  google.protobuf.Timestamp request_timestamp = 3;
+}
+
+message HelloResponse {
+  string greeting = 1;
+  string name = 2;
+  google.protobuf.Timestamp response_timestamp = 3;
+
+//  oneof response {
+//    SuccessResponse success_response = 1;
+//    ErrorResponse error_response = 2;
+//  }
+//}
+}
+
+service GreetingService {
+  rpc greeting(HelloRequest) returns (HelloResponse);
+}
+
+
+//service HelloWorldService {
+//  rpc SayHello(stream HelloRequest) returns (stream HelloResponse);
+//}
