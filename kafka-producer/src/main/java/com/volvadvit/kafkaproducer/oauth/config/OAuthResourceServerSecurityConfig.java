@@ -16,9 +16,10 @@ public class OAuthResourceServerSecurityConfig {
     public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/kafka/**")
-                        .hasAuthority("SCOPE_PUBLIC_API")
-                        .anyRequest().permitAll())
+                        .requestMatchers(HttpMethod.POST, "/kafka/**").hasAuthority("SCOPE_PUBLIC_API")
+                        .requestMatchers("/actuator/**").hasAuthority("SCOPE_metrics")
+//                        .requestMatchers("/actuator/**").permitAll()
+                        .anyRequest().denyAll())
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(Customizer.withDefaults()))
                 .csrf(CsrfConfigurer::disable)

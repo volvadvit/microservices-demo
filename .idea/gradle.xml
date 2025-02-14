@@ -22,6 +22,11 @@
                   <project path="$PROJECT_DIR$/kafka-producer" />
                 </projects>
               </build>
+              <build path="$PROJECT_DIR$/spring-admin" name="spring-admin">
+                <projects>
+                  <project path="$PROJECT_DIR$/spring-admin" />
+                </projects>
+              </build>
               <build path="$PROJECT_DIR$/spring-config" name="spring-config">
                 <projects>
                   <project path="$PROJECT_DIR$/spring-config" />
@@ -53,6 +58,7 @@
             <option value="$PROJECT_DIR$/eureka-server" />
             <option value="$PROJECT_DIR$/grpc-server" />
             <option value="$PROJECT_DIR$/kafka-producer" />
+            <option value="$PROJECT_DIR$/spring-admin" />
             <option value="$PROJECT_DIR$/spring-config" />
             <option value="$PROJECT_DIR$/spring-data" />
             <option value="$PROJECT_DIR$/spring-gateway" />
@@ -81,6 +87,14 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/grpc-server" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/spring-admin" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/spring-admin" />
           </set>
         </option>
       </GradleProjectSettings>

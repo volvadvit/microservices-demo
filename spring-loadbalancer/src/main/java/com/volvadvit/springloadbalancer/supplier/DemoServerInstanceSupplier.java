@@ -8,7 +8,7 @@ import reactor.core.publisher.Flux;
 import java.util.Arrays;
 import java.util.List;
 
-record DemoServerInstanceSupplier(String serviceId) implements ServiceInstanceListSupplier {
+public record DemoServerInstanceSupplier(String serviceId) implements ServiceInstanceListSupplier {
 
     @Override
     public String getServiceId() {
@@ -18,8 +18,8 @@ record DemoServerInstanceSupplier(String serviceId) implements ServiceInstanceLi
     @Override
     public Flux<List<ServiceInstance>> get() {
         return Flux.just(Arrays
-                .asList(new DefaultServiceInstance(serviceId + "1", serviceId, "localhost", 64436, false),
-                        new DefaultServiceInstance(serviceId + "2", serviceId, "localhost", 64443, false)));
+                .asList(new DefaultServiceInstance(serviceId + "1", serviceId, "localhost", 8765, false),
+                        new DefaultServiceInstance(serviceId + "2", serviceId, "localhost", 8765, false)));
     }
 
 }
