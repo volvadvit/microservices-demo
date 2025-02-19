@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public List<Message> getAllCreatedAfter(final String createdAfterDate) {
-        final LocalDateTime localDate = LocalDateTime.parse("2018-05-05T11:50:55", DateTimeFormatter.ISO_DATE_TIME);
+        final ZonedDateTime localDate = ZonedDateTime.parse(createdAfterDate, DateTimeFormatter.ISO_ZONED_DATE_TIME);
         return messageRepository.findAllByCreatedAtAfter(localDate);
     }
 

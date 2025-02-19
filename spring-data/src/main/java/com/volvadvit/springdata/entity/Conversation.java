@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -32,7 +32,7 @@ public class Conversation {
     private Set<User> users;
 
     @Column
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private ZonedDateTime createdAt = ZonedDateTime .now();
 
     @OneToMany(mappedBy = "conversation", targetEntity = Message.class, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> messages;

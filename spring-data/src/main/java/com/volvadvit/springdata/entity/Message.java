@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "message")
@@ -36,7 +36,7 @@ public class Message {
     private User sender;
 
     @Column
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private ZonedDateTime  createdAt = ZonedDateTime.now();
 
     @ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "conversation_id", referencedColumnName = "id")

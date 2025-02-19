@@ -1,13 +1,13 @@
 create table if not exists conversation (
                               id serial primary key,
-                              created_at timestamp,
+                              created_at timestamp with time zone,
                               name varchar(255) not null check (length(trim(name)) >= 2)
 );
 
 create table if not exists message (
                          id serial not null,
                          body varchar(2048),
-                         created_at timestamp,
+                         created_at timestamp with time zone,
                          conversation_id bigint not null,
                          sender_id bigint not null,
                          primary key (id)

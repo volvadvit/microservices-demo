@@ -25,5 +25,11 @@ public interface MessageService {
      */
     String updateMessageBody(String idempotencyKey, MessageUpdateRequestDTO dto);
 
+    /**
+     * Returns all messages created after provided time
+     *
+     * @param createdAfterDate format: 2011-12-03T10:15:30+01:00[Europe/ Paris]
+     * @return messages
+     */
     List<Message> getAllCreatedAfter(String createdAfterDate);
 }
