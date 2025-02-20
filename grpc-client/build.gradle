@@ -34,8 +34,6 @@ dependencies {
     // gRPC Client
     implementation group: 'net.devh', name: 'grpc-client-spring-boot-starter', version: '3.1.0.RELEASE'
     implementation group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3'
-    // Actuator
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 protobuf {

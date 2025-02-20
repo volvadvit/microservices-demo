@@ -1,6 +1,6 @@
 package com.volvadvit.springdata.repository;
 
-import com.volvadvit.springdata.entity.Message;
+import com.volvadvit.springdata.model.entity.Message;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

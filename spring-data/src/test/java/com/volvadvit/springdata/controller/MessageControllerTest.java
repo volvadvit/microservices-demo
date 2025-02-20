@@ -1,10 +1,10 @@
 package com.volvadvit.springdata.controller;
 
-import com.volvadvit.springdata.dto.request.MessageCreateRequestDTO;
-import com.volvadvit.springdata.dto.response.MessageResponseDTO;
-import com.volvadvit.springdata.entity.Conversation;
-import com.volvadvit.springdata.entity.Message;
-import com.volvadvit.springdata.entity.User;
+import com.volvadvit.springdata.model.dto.request.MessageCreateRequestDTO;
+import com.volvadvit.springdata.model.dto.response.MessageResponseDTO;
+import com.volvadvit.springdata.model.entity.Conversation;
+import com.volvadvit.springdata.model.entity.Message;
+import com.volvadvit.springdata.model.entity.User;
 import com.volvadvit.springdata.service.MessageService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,8 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 
-import java.sql.Timestamp;
-import java.time.Instant;
+import java.time.ZonedDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -59,8 +58,8 @@ class MessageControllerTest {
         // Then
         assertEquals(HttpStatus.OK, response.getStatusCode(), "Status code should be OK");
         assertNotNull(response.getBody());
-        assertEquals(messageBody, response.getBody().getMessage());
-        assertEquals(messageId, response.getBody().getMessageId());
+        assertEquals(messageBody, response.getBody().message());
+        assertEquals(messageId, response.getBody().messageId());
         verify(messageService, times(1)).saveNewMessage(any());
     }
 
@@ -83,6 +82,6 @@ class MessageControllerTest {
     private Message createNewMessage(final int messageId, final String body, final int senderId, final int conversationId) {
         final User testUser = new User(senderId, null, null, null);
         final Conversation testConversation = new Conversation(conversationId, null, null, null, null);
-        return new Message(messageId, body, testUser, Timestamp.from(Instant.now()), testConversation);
+        return new Message(messageId, body, testUser, ZonedDateTime.now(), testConversation);
     }
 }

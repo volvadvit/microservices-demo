@@ -1,9 +1,10 @@
 package com.volvadvit.springdata.controller;
 
-import com.volvadvit.springdata.dto.request.MessageCreateRequestDTO;
-import com.volvadvit.springdata.dto.request.MessageUpdateRequestDTO;
-import com.volvadvit.springdata.dto.response.MessageResponseDTO;
-import com.volvadvit.springdata.entity.Message;
+import com.volvadvit.springdata.mapper.MessageDtoMapper;
+import com.volvadvit.springdata.model.dto.request.MessageCreateRequestDTO;
+import com.volvadvit.springdata.model.dto.request.MessageUpdateRequestDTO;
+import com.volvadvit.springdata.model.dto.response.MessageResponseDTO;
+import com.volvadvit.springdata.model.entity.Message;
 import com.volvadvit.springdata.service.MessageService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,7 @@ import java.util.Optional;
 public class MessageController {
 
     private final MessageService messageService;
+    private final MessageDtoMapper messageDtoMapper;
 
     @PostMapping
     public ResponseEntity<MessageResponseDTO> saveNewMessage(@Valid @RequestBody final MessageCreateRequestDTO requestDTO,
@@ -41,7 +43,7 @@ public class MessageController {
             }
         } else {
             final Message newMessage = messageService.saveNewMessage(requestDTO);
-            return ResponseEntity.ok(toMessageResponseDTO(newMessage));
+            return ResponseEntity.ok(messageDtoMapper.toMessageResponseDTO(newMessage));
         }
     }
 
@@ -57,15 +59,7 @@ public class MessageController {
         return ResponseEntity.ok(
                 Optional.ofNullable(messageService.getAllCreatedAfter(date)).stream()
                         .flatMap(Collection::stream)
-                        .map(this::toMessageResponseDTO)
+                        .map(messageDtoMapper::toMessageResponseDTO)
                         .toList());
-    }
-
-    private MessageResponseDTO toMessageResponseDTO(final Message message) {
-        return new MessageResponseDTO(
-                message.getBody(),
-                message.getId(),
-                message.getSender().getId(),
-                message.getConversation().getId());
     }
 }

@@ -1,9 +1,9 @@
 package com.volvadvit.springdata.service.impl;
 
-import com.volvadvit.springdata.dto.request.MessageCreateRequestDTO;
-import com.volvadvit.springdata.dto.request.MessageUpdateRequestDTO;
-import com.volvadvit.springdata.entity.IdempotencyKey;
-import com.volvadvit.springdata.entity.Message;
+import com.volvadvit.springdata.model.dto.request.MessageCreateRequestDTO;
+import com.volvadvit.springdata.model.dto.request.MessageUpdateRequestDTO;
+import com.volvadvit.springdata.model.entity.IdempotencyKey;
+import com.volvadvit.springdata.model.entity.Message;
 import com.volvadvit.springdata.repository.IdempotencyKeyRepository;
 import com.volvadvit.springdata.repository.MessageRepository;
 import com.volvadvit.springdata.service.ConversationService;

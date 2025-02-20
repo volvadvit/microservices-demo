@@ -1,4 +1,4 @@
-package com.volvadvit.springdata.entity;
+package com.volvadvit.springdata.model.entity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

@@ -1,6 +1,6 @@
 package com.volvadvit.springdata.service.impl;
 
-import com.volvadvit.springdata.entity.User;
+import com.volvadvit.springdata.model.entity.User;
 import com.volvadvit.springdata.repository.UserRepository;
 import com.volvadvit.springdata.service.UserService;
 import lombok.RequiredArgsConstructor;

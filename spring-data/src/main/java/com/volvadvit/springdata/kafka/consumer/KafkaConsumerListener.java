@@ -1,8 +1,8 @@
 package com.volvadvit.springdata.kafka.consumer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.volvadvit.springdata.dto.request.MessageCreateRequestDTO;
-import com.volvadvit.springdata.entity.Message;
+import com.volvadvit.springdata.model.dto.request.MessageCreateRequestDTO;
+import com.volvadvit.springdata.model.entity.Message;
 import com.volvadvit.springdata.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

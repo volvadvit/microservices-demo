@@ -1,6 +1,6 @@
 package com.volvadvit.springdata.service;
 
-import com.volvadvit.springdata.entity.Conversation;
+import com.volvadvit.springdata.model.entity.Conversation;
 
 public interface ConversationService {
 

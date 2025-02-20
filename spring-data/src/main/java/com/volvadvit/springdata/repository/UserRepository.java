@@ -1,6 +1,6 @@
 package com.volvadvit.springdata.repository;
 
-import com.volvadvit.springdata.entity.User;
+import com.volvadvit.springdata.model.entity.User;
 import jakarta.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

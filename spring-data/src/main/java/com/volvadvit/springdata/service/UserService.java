@@ -1,6 +1,6 @@
 package com.volvadvit.springdata.service;
 
-import com.volvadvit.springdata.entity.User;
+import com.volvadvit.springdata.model.entity.User;
 
 public interface UserService {
 

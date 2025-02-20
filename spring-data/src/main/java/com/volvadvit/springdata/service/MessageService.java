@@ -1,8 +1,8 @@
 package com.volvadvit.springdata.service;
 
-import com.volvadvit.springdata.dto.request.MessageCreateRequestDTO;
-import com.volvadvit.springdata.dto.request.MessageUpdateRequestDTO;
-import com.volvadvit.springdata.entity.Message;
+import com.volvadvit.springdata.model.dto.request.MessageCreateRequestDTO;
+import com.volvadvit.springdata.model.dto.request.MessageUpdateRequestDTO;
+import com.volvadvit.springdata.model.entity.Message;
 
 import java.util.List;
 

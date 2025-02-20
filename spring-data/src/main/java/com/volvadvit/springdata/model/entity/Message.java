@@ -1,4 +1,4 @@
-package com.volvadvit.springdata.entity;
+package com.volvadvit.springdata.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;

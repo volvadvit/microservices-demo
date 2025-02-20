@@ -1,6 +1,6 @@
 package com.volvadvit.springdata.service.impl;
 
-import com.volvadvit.springdata.entity.Conversation;
+import com.volvadvit.springdata.model.entity.Conversation;
 import com.volvadvit.springdata.repository.ConversationRepository;
 import com.volvadvit.springdata.service.ConversationService;
 import lombok.RequiredArgsConstructor;
