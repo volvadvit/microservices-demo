@@ -58,7 +58,7 @@ class MessageControllerTest {
         // Then
         assertEquals(HttpStatus.OK, response.getStatusCode(), "Status code should be OK");
         assertNotNull(response.getBody());
-        assertEquals(messageBody, response.getBody().message());
+        assertEquals(messageBody, response.getBody().body());
         assertEquals(messageId, response.getBody().messageId());
         verify(messageService, times(1)).saveNewMessage(any());
     }
